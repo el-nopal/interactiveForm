@@ -13,7 +13,7 @@ $( "#name" ).focus();
 // hide other input when not selected
 $( "#other-title" ).hide();
 // display other input when selected
-$('#title').click (function () {
+$('#title').on('click keypress', function () {
   const selectedValue = $(this).val();
   if (selectedValue === 'other') {
     $( "#other-title" ).show();
@@ -24,3 +24,7 @@ $('#title').click (function () {
 //=======================================
 // T-shirt section
 // ======================================
+
+// "Theme - JS Puns" colors: "Cornflower Blue," "Dark Slate Grey," and "Gold."
+// $('#color option').eq(0).css({color: red});
+// "Theme - I ♥ JS" colors: "Tomato," "Steel Blue," and "Dim Grey."
