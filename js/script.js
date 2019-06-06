@@ -1,17 +1,15 @@
 // Put the first field in the `focus` state
 $( "#name" ).focus();
 
-// ”Job Role” section
-$('#title').click( function () {
-  
-});
-/**
-$('#mySelectBox option').each(function() {
-    if($(this).isChecked())
-       alert('this option is selected');
-     else
-       alert('this is not');
-});
-**/
-
+// “Other” option to the Job Role section
+// hide other input when not selected
 $( "#other-title" ).hide();
+// display other input when selected
+$('#title option').click (function () {
+  const selectedValue = $(this).val();
+  if (selectedValue === 'other') {
+    $( "#other-title" ).show();
+  } else {
+    $( "#other-title" ).hide();
+  }
+});
