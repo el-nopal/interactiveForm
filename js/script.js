@@ -13,7 +13,7 @@ $( "#name" ).focus();
 // hide other input when not selected
 $( "#other-title" ).hide();
 // display other input when selected
-$('#title option').click (function () {
+$('#title').click (function () {
   const selectedValue = $(this).val();
   if (selectedValue === 'other') {
     $( "#other-title" ).show();
