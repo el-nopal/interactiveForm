@@ -29,26 +29,11 @@ $('#design').on('click keypass change', function () {
   $('#design option').eq(0).hide();
 });
 // Update the “Color” field to read “Please select a T-shirt theme”.
-const $color = $('<option>Please select a T-shirt theme</option>');
-$('#color').prepend($color);
-
-
-// $('#design').change( function (e) {
-//   const theme = $(this).val();
-//   if (theme === 'js puns') {
-//     $('#color ').eq(6).hide();
-//     $('#color ').eq(5).hide();
-//     $('#color ').eq(4).hide();
-//   } else if (theme === 'heart js') {
-//     $('#color ').eq(3).hide();
-//     $('#color ').eq(2).hide();
-//     $('#color ').eq(1).hide();
-//   }
-//   else {
-//     $('#color ').hide();
-//   }
-// });
-
+const $color = $('<option value="default">Please select a T-shirt theme</option>');
+$('#color').prepend($color).val('default');
+// hide colors until theme is selected
+$('#color option').hide();
+// when a theme is selected colors is given to correct theme
 $('#design').change(function (e) {
   const theme = $(this).val();
   if (theme === 'js puns') {
