@@ -47,10 +47,6 @@ $('#design').change(function (e) {
     $('#color option').eq(5).show();
     $('#color option').eq(4).show();
   }
-});
-
-$('#design').change(function (e) {
-  const theme = $(this).val();
   if (theme === 'heart js') {
     $('#color option').eq(0).hide();
     $('#color option').eq(3).hide();
@@ -62,4 +58,38 @@ $('#design').change(function (e) {
     $('#color option').eq(2).show();
     $('#color option').eq(1).show();
   }
+});
+
+// if else if (figure out)
+// $('#design').change(function (e) {
+//   const theme = $(this).val();
+//   if (theme === 'js puns') {
+//     $('#color option').eq(0).hide();
+//     $('#color option').eq(6).hide();
+//     $('#color option').eq(5).hide();
+//     $('#color option').eq(4).hide();
+//   } else if (theme === 'heart js') {
+//     $('#color option').eq(0).hide();
+//     $('#color option').eq(3).hide();
+//     $('#color option').eq(2).hide();
+//     $('#color option').eq(1).hide();
+//   }
+//   else {
+//     $('#color option').hide();
+//   }
+// });
+
+//=======================================
+// Activity Section
+// ======================================
+// Creating an element to display the total activity cost
+let total = 0;
+const $cost = $('<label><b>Total: </b></label>').
+  css({"color": "green", "font-size": "20px"});
+
+$('.activities').append($cost, total);
+// Listening for changes in the activity section
+$('.activities').change(function () {
+  const input = $(this).val();
+
 });
