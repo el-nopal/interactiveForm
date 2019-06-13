@@ -61,17 +61,23 @@ $('#design').change(function (e) {
 // ======================================
 // Creating an element to display the total activity cost
 let total = 0;
-const $cost = $('<label><b>Total: </b></label>').
-  css({"color": "green", "font-size": "20px"});
+const $cost = $('<label><b>Total: </b></label>').css({"color": "green", "font-size": "20px"});
 
 $('.activities').append($cost, total);
+
 // Listening for changes in the activity section
 $('.activities').change(function (e) {
+  // event target
   let input = e.target;
-  // let input = $('.activities input:checked').val();
-  // let input = $(this).val();
-  // console.log(input);
-  let activity = $('.activities input:checked').parent().text();
-  console.log(activity);
+  // activity clicked
+  let $activity = $('.activities input:checked').parent().text();
+  console.log($activity);
+  // locating the dollar sign to tell the price
+  let dollarSign = '$';
+  let indexOfDollar = $activity.indexOf(dollarSign);
+  let costOf = $activity.slice(indexOfDollar, );
+  console.log(costOf);
+  let price = parseInt('costOf', 4);
+  console.log(price);
 
 });
