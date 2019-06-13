@@ -75,9 +75,10 @@ $('.activities').change(function (e) {
   // locating the dollar sign to tell the price
   let dollarSign = '$';
   let indexOfDollar = $activity.indexOf(dollarSign);
-  let costOf = $activity.slice(indexOfDollar, );
+  let costOf = $activity.slice(indexOfDollar);
   console.log(costOf);
-  let price = parseInt('costOf', 4);
-  console.log(price);
+  // change string into integer
+  let price = parseInt('costOf');
+  console.log(typeof price);
 
 });
