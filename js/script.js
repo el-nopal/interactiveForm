@@ -3,10 +3,6 @@
 // ======================================
 $( "#name" ).focus();
 
-// $( document ).ready(function() {
-//   $( "#name" ).focus();
-// });
-
 //=======================================
 // “Other” option to the Job Role section
 // ======================================
@@ -60,25 +56,6 @@ $('#design').change(function (e) {
   }
 });
 
-// if else if (figure out)
-// $('#design').change(function (e) {
-//   const theme = $(this).val();
-//   if (theme === 'js puns') {
-//     $('#color option').eq(0).hide();
-//     $('#color option').eq(6).hide();
-//     $('#color option').eq(5).hide();
-//     $('#color option').eq(4).hide();
-//   } else if (theme === 'heart js') {
-//     $('#color option').eq(0).hide();
-//     $('#color option').eq(3).hide();
-//     $('#color option').eq(2).hide();
-//     $('#color option').eq(1).hide();
-//   }
-//   else {
-//     $('#color option').hide();
-//   }
-// });
-
 //=======================================
 // Activity Section
 // ======================================
@@ -89,7 +66,12 @@ const $cost = $('<label><b>Total: </b></label>').
 
 $('.activities').append($cost, total);
 // Listening for changes in the activity section
-$('.activities').change(function () {
-  const input = $(this).val();
+$('.activities').change(function (e) {
+  let input = e.target;
+  // let input = $('.activities input:checked').val();
+  // let input = $(this).val();
+  // console.log(input);
+  let activity = $('.activities input:checked').parent().text();
+  console.log(activity);
 
 });
