@@ -61,7 +61,7 @@ $('#design').change(function (e) {
 // ======================================
 // Creating an element to display the total activity cost
 let total = 0;
-const $cost = $('<label><b>Total: </b></label>').css({"color": "green", "font-size": "20px"});
+const $cost = $('<label><b>Total:  </b></label>').css({"color": "green", "font-size": "20px"});
 
 $('.activities').append($cost, total);
 
