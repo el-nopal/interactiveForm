@@ -84,12 +84,12 @@ $('.activities').change(function (e) {
   console.log(typeof price);
 
   // updating/displaying cost part 2 ...
-  if (input) {
+  if ( input ) {
     // clicked add cost
-    cost += 200;
+    cost += price;
   } else {
     // not clicked substract
-    cost -= 200;
+    cost -= price;
   };
 
 
