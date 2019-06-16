@@ -60,18 +60,20 @@ $('#design').change(function (e) {
 // Activity Section
 // ======================================
 // Creating an element to display the total activity cost
-let total = 0;
-const $cost = $('<label><b>Total:  </b></label>').css({"color": "green", "font-size": "20px"});
+let cost = 0;
+let $total = $('<label><b>Total: $ ' + cost + '</b></label>').css({"color": "green", "font-size": "20px"});
+$('.activities').append($total);
 
-$('.activities').append($cost, total);
 
 // Listening for changes in the activity section
 $('.activities').change(function (e) {
   // event target
-  let input = e.target;
+  let input = $(e.target);
   // activity clicked
   let $activity = $('.activities input:checked').parent().text();
   console.log($activity);
+
+  // updating/displaying cost part 1 ...
   // locating the dollar sign to tell the price
   let dollarSign = '$';
   let indexOfDollar = $activity.indexOf(dollarSign);
@@ -81,4 +83,23 @@ $('.activities').change(function (e) {
   let price = parseInt('costOf');
   console.log(typeof price);
 
+  // updating/displaying cost part 2 ...
+  if (input) {
+    // clicked add cost
+    cost += 200;
+  } else {
+    // not clicked substract
+    cost -= 200;
+  };
+
+
 });
+
+
+//=======================================
+// Payment Section
+// ======================================
+
+//=======================================
+// Form Validation
+// ======================================
