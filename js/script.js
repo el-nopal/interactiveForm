@@ -84,7 +84,7 @@ $('.activities').change(function (e) {
   console.log(typeof price);
 
   // updating/displaying cost part 2 ...
-  if ( input ) {
+  if ( 'input:checked' ) {
     // clicked add cost
     cost += price;
   } else {
