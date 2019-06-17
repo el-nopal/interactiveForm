@@ -61,41 +61,42 @@ $('#design').change(function (e) {
 //=======================================
 // Activity Section
 // ======================================
-// Creating an element to display the total activity cost
+// Creating a DOM element to display the total activity cost
 let cost = 0;
-let $total = $('<label><b>Total: $ ' + cost + '</b></label>').css({"color": "green", "font-size": "20px"});
+const $total = $('<label></label>');
 $('.activities').append($total);
 
 
 // Listening for changes in the activity section
-$('.activities').change(function (e) {
-  // event target
-  let $input = $(e.target);
-  // activity clicked
-  let $activity = $('.activities input:checked').parent().text();
+$('.activities').change(function () {
+  // The DOM `input` element that was just clicked.
+  let $clicked = $('.activities input:checked');
+  // The text content of the above `input` element’s parent `label` element.
+  let $activity = $clicked.parent().text();
   console.log($activity);
 
   // updating/displaying cost part 1 ...
-  // locating the dollar sign to tell the price
-  let dollarSign = '$';
-  let indexOfDollar = $activity.indexOf(dollarSign);
+  // The index of the dollar sign ‘$’
+  const dollarSign = '$';
+  let indexOfDollar = $activity.indexOf(dollarSign) + 1;
+  // The cost of the activity the was just clicked.
   let costOf = $activity.slice(indexOfDollar);
   console.log(costOf);
-  // change string into integer
-  let price = parseInt('costOf');
+  // the cost from the variable above, which is currently a string type, and turn it into a number type
+  let price = parseInt(costOf);
   console.log(typeof price);
 
   // updating/displaying cost part 2 ...
-  if ( $input.prop( "checked" ) ) { //for sure something like this $( elem ).prop( "checked" )
-
+  if ( $( $clicked ).prop( "checked" ) ) {
     // clicked add cost
-    cost += 200;
+    cost += price;
   } else {
     // not clicked substract
     cost -= price;
   }
 
-
+  let $totalCost = $('<b>Total: $ ' + cost + '</b>').css({"color": "green", "font-size": "20px"});
+  alert(cost);
 });
 
 
