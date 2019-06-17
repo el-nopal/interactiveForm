@@ -103,11 +103,17 @@ $('.activities').change(function (e) {
   console.log(dayTime);
 
 // Disabling conflicting activities part 2 ...
-  let $checkboxes = $('.activities input');
-  for (var i = 0; i < $checkboxes.length; i++) {
+  let $checkboxes = $('.activities input:checked');
+  for (let i = 0; i < $checkboxes.length; i++) {
     $checkboxes[i];
-    
+    // if (true === true && true !== false ) {
+    //   $checkboxes[i].disabled = true;
+    // } else {
+    //   $checkboxes[i].disabled = false;
+    // }
   }
+  console.log($checkboxes);
+
 });
 
 //--------------------------------------------
