@@ -3,18 +3,16 @@
 // TREEHOUSE FSJS PROJECT 3 - INTERACTIVE FORM
 //
 // ============================================
-
-
-//=======================================
+//--------------------------------------------
 // Put the first field in the `focus` state
-// ======================================
+//--------------------------------------------
 // To focus on input box on page startup
 $( document ).ready(function() {
   $( "#name" ).focus();
 });
-//=======================================
+//--------------------------------------------
 // “Other” option to the Job Role section
-// ======================================
+//--------------------------------------------
 // hide other input when not selected
 $( "#other-title" ).hide();
 // display other input when selected
@@ -26,9 +24,9 @@ $('#title').on('click keypress', function () {
     $( "#other-title" ).hide();
   }
 });
-//=======================================
+//--------------------------------------------
 // T-shirt section
-// ======================================
+//--------------------------------------------
 // Hide the “Select Theme” `option` element in the “Design” menu.
 $('#design').change( function () {
   $('#design option').eq(0).hide();
@@ -58,9 +56,9 @@ $('#design').change(function (e) {
   }
 });
 
-//=======================================
+//--------------------------------------------
 // Activity Section
-// ======================================
+//--------------------------------------------
 // Creating a DOM element to display the total activity cost
 let cost = 0;
 const $total = $('<label></label>');
@@ -88,22 +86,21 @@ $('.activities').change(function () {
 
   // updating/displaying cost part 2 ...
   if ( $( $clicked ).prop( "checked" ) ) {
-    // clicked add cost
+    //add the cost of the currently clicked activity to the total cost variable,
     cost += price;
   } else {
-    // not clicked substract
+    // else subtract the cost.
     cost -= price;
   }
-
-  let $totalCost = $('<b>Total: $ ' + cost + '</b>').css({"color": "green", "font-size": "20px"});
-  alert(cost);
+  // set the text of the total cost element equal to the string ‘Total: $’
+  // concatenated with the current value of the total cost variable
+  let $totalCost = $total.text('Total: $ ' + cost).css({"color": "green", "font-weight": "bold", "font-size": "20px"});
 });
 
-
-//=======================================
+//--------------------------------------------
 // Payment Section
-// ======================================
+//--------------------------------------------
 
-//=======================================
+//--------------------------------------------
 // Form Validation
-// ======================================
+//--------------------------------------------
