@@ -66,35 +66,48 @@ $('.activities').append($total);
 
 
 // Listening for changes in the activity section
-$('.activities').change(function () {
-  // The DOM `input` element that was just clicked.
-  let $clicked = $('.activities input:checked');
-  // The text content of the above `input` element’s parent `label` element.
+$('.activities').change(function (e) {
+// The DOM `input` element that was just clicked.
+  let $clicked = $(e.target);
+// The text content of the above `input` element’s parent `label` element.
   let $activity = $clicked.parent().text();
   console.log($activity);
 
-  // updating/displaying cost part 1 ...
-  // The index of the dollar sign ‘$’
+// updating/displaying cost part 1 ...
+// The index of the dollar sign ‘$’
   const dollarSign = '$';
-  let indexOfDollar = $activity.indexOf(dollarSign) + 1;
-  // The cost of the activity the was just clicked.
-  let costOf = $activity.slice(indexOfDollar);
-  console.log(costOf);
-  // the cost from the variable above, which is currently a string type, and turn it into a number type
+  let ioDollar = $activity.indexOf(dollarSign) + 1;
+// The cost of the activity the was just clicked.
+  let costOf = $activity.slice(ioDollar);
+// the cost from the variable above, which is currently a string type, and turn it into a number type
   let price = parseInt(costOf);
-  console.log(typeof price);
 
-  // updating/displaying cost part 2 ...
+// updating/displaying cost part 2 ...
   if ( $( $clicked ).prop( "checked" ) ) {
-    //add the cost of the currently clicked activity to the total cost variable,
+//add the cost of the currently clicked activity to the total cost variable,
     cost += price;
   } else {
-    // else subtract the cost.
+// else subtract the cost.
     cost -= price;
   }
-  // set the text of the total cost element equal to the string ‘Total: $’
-  // concatenated with the current value of the total cost variable
+// set the text of the total cost element equal to the string ‘Total: $’
+// concatenated with the current value of the total cost variable
   let $totalCost = $total.text('Total: $ ' + cost).css({"color": "green", "font-weight": "bold", "font-size": "20px"});
+
+// Disabling conflicting activities part 1 ...
+  const emDash = '—';
+  const comma = ',';
+  let ioDash = $activity.indexOf(emDash);
+  let ioComma = $activity.indexOf(comma);
+  let dayTime = $activity.slice(ioDash, ioComma);
+  console.log(dayTime);
+
+// Disabling conflicting activities part 2 ...
+  let $checkboxes = $('.activities input');
+  for (var i = 0; i < $checkboxes.length; i++) {
+    $checkboxes[i];
+    
+  }
 });
 
 //--------------------------------------------
