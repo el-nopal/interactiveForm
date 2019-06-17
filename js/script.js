@@ -1,8 +1,17 @@
+//=============================================
+//
+// TREEHOUSE FSJS PROJECT 3 - INTERACTIVE FORM
+//
+// ============================================
+
+
 //=======================================
 // Put the first field in the `focus` state
 // ======================================
-$( "#name" ).focus();
-
+// To focus on input box on page startup
+$( document ).ready(function() {
+  $( "#name" ).focus();
+});
 //=======================================
 // “Other” option to the Job Role section
 // ======================================
@@ -10,8 +19,8 @@ $( "#name" ).focus();
 $( "#other-title" ).hide();
 // display other input when selected
 $('#title').on('click keypress', function () {
-  const selectedValue = $(this).val();
-  if (selectedValue === 'other') {
+  const selected = $(this).val(); // .val() - Get the current value of the first element in the set of matched elements.
+  if (selected === 'other') {
     $( "#other-title" ).show();
   } else {
     $( "#other-title" ).hide();
@@ -21,7 +30,7 @@ $('#title').on('click keypress', function () {
 // T-shirt section
 // ======================================
 // Hide the “Select Theme” `option` element in the “Design” menu.
-$('#design').on('click keypass change', function () {
+$('#design').change( function () {
   $('#design option').eq(0).hide();
 });
 // Update the “Color” field to read “Please select a T-shirt theme”.
@@ -29,32 +38,26 @@ const $color = $('<option value="default">Please select a T-shirt theme</option>
 $('#color').prepend($color).val('default');
 // hide colors until theme is selected
 $('#color option').hide();
+
 // when a theme is selected colors is given to correct theme
 $('#design').change(function (e) {
   const theme = $(this).val();
-  if (theme === 'js puns') {
-    $('#color option').eq(0).hide();
-    $('#color option').eq(6).hide();
-    $('#color option').eq(5).hide();
-    $('#color option').eq(4).hide();
-  }
-  else {
-    $('#color option').eq(6).show();
-    $('#color option').eq(5).show();
-    $('#color option').eq(4).show();
-  }
-  if (theme === 'heart js') {
-    $('#color option').eq(0).hide();
-    $('#color option').eq(3).hide();
-    $('#color option').eq(2).hide();
-    $('#color option').eq(1).hide();
-  }
-  else {
-    $('#color option').eq(3).show();
-    $('#color option').eq(2).show();
-    $('#color option').eq(1).show();
+  const $jsPuns = $( "#color option:contains('JS Puns')" );
+  const $heartJs = $( "#color option:contains('I')" );
+// 'I &#9829; JS' and  'JS Puns'
+  if (theme === 'js puns' ) {
+    $jsPuns.show();
+    $heartJs.hide();
+  } else if ( theme === 'heart js' ) {
+    $heartJs.show();
+    $jsPuns.hide();
+  } else {
+    $jsPuns.hide();
+    $heartJs.hide();
+    $color.hide();
   }
 });
+
 
 //=======================================
 // Activity Section
@@ -68,7 +71,7 @@ $('.activities').append($total);
 // Listening for changes in the activity section
 $('.activities').change(function (e) {
   // event target
-  let input = $(e.target);
+  let $input = $(e.target);
   // activity clicked
   let $activity = $('.activities input:checked').parent().text();
   console.log($activity);
@@ -84,13 +87,14 @@ $('.activities').change(function (e) {
   console.log(typeof price);
 
   // updating/displaying cost part 2 ...
-  if ( 'input:checked' ) {
+  if ( $input.prop( "checked" ) ) { //for sure something like this $( elem ).prop( "checked" )
+
     // clicked add cost
-    cost += price;
+    cost += 200;
   } else {
     // not clicked substract
     cost -= price;
-  };
+  }
 
 
 });
