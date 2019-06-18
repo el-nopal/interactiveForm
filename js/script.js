@@ -119,7 +119,57 @@ $('.activities').change(function (e) {
 //--------------------------------------------
 // Payment Section
 //--------------------------------------------
+// Hide the “Select Payment Method `option` element in the 'payment' menu.
+$('#payment').change( function () {
+  $('#payment option').eq(0).hide();
+});
+const $paypal = $( "div p:contains('Paypal')" ).hide();
+const $bitcoin = $( "div p:contains('Bitcoin')" ).hide();
 
+$('#payment').change(function (e) {
+  const payment = $(this).val();
+  const $credit = $( '#credit-card' );
+  if (payment === 'paypal' ) {
+    $credit.hide();
+    $paypal.show();
+    $bitcoin.hide();
+  } else if ( payment === 'bitcoin' ) {
+    $credit.hide();
+    $paypal.hide();
+    $bitcoin.show();
+  } else {
+    $credit.show();
+    $paypal.hide();
+    $bitcoin.hide();
+  }
+});
 //--------------------------------------------
 // Form Validation
 //--------------------------------------------
+
+// Create a separate validation function for each of the required form fields or sections
+// ○ Name
+// ○ Email
+// ○ Activity Section
+// ○ Credit Card Number (only validated if the payment method is “credit card”)
+// ○ Zip Code (only validated if the payment method is “credit card”)
+// ○ CVV (only validated if the payment method is “credit card”)
+const $nameLetters = $('label[for="name"]');
+
+$( 'button' ).on( 'click', function(e) {
+
+  if ( $('#name').val() === "" ) {
+    $nameLetters.css({"color": "red", "font-weight": "bold"});
+    $('#name').css({"border-color": "red"});
+  }
+  e.preventDefault();
+});
+
+// $( "form" ).submit(function( event ) {
+//   if ( $( "input:first" ).val() === "javatpoint" ) {
+//     $( "span" ).text( "Submitted Successfully." ).show();
+//     return;
+//   }
+//   $( "span" ).text( "Not valid!" ).show().fadeOut( 2000 );
+//   event.preventDefault();
+// });
