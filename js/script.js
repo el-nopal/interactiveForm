@@ -55,7 +55,6 @@ $('#design').change(function (e) {
     $color.hide();
   }
 });
-
 //--------------------------------------------
 // Activity Section
 //--------------------------------------------
@@ -63,7 +62,6 @@ $('#design').change(function (e) {
 let cost = 0;
 const $total = $('<label></label>');
 $('.activities').append($total);
-
 
 // Listening for changes in the activity section
 $('.activities').change(function (e) {
@@ -146,27 +144,16 @@ $('#payment').change(function (e) {
 //--------------------------------------------
 // Form Validation
 //--------------------------------------------
-
-// Create a separate validation function for each of the required form fields or sections
-// ○ Name
-// ○ Email
-// ○ Activity Section
-// ○ Credit Card Number (only validated if the payment method is “credit card”)
-// ○ Zip Code (only validated if the payment method is “credit card”)
-// ○ CVV (only validated if the payment method is “credit card”)
 const $nameLetters = $('label[for="name"]');
 const $emailLetters = $('label[for="mail"]');
 // credit card
-const selected = $('#payment option:selected').text();
+// const selected = $('#payment option:selected').text();
 const $ccNum = $('label[for="cc-num"]');
 const $zip = $('label[for="zip"]');
 const $cvv = $('label[for="cvv"]');
-console.log($ccNum);
-console.log($zip);
-console.log($cvv);
 
 $( 'button' ).on( 'click', function(e) {
-  let selected = $(this).val();
+  // let selected = $(this).val();
   // name input
   if ( $('#name').val() === "" ) {
     $nameLetters.css({"color": "red", "font-weight": "bold"});
@@ -177,6 +164,8 @@ $( 'button' ).on( 'click', function(e) {
     $emailLetters.css({"color": "red", "font-weight": "bold"});
     $('#mail').css({"border-color": "red"});
   }
+  // activity section
+
   // credit card
   // if ( selected === 'Credit Card') {
   //   if ( $('#cc-num').val() === "" ) {
@@ -195,6 +184,7 @@ $( 'button' ).on( 'click', function(e) {
   e.preventDefault();
 });
 
+// form validation example
 // $( "form" ).submit(function( event ) {
 //   if ( $( "input:first" ).val() === "javatpoint" ) {
 //     $( "span" ).text( "Submitted Successfully." ).show();
