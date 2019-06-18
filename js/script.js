@@ -155,13 +155,43 @@ $('#payment').change(function (e) {
 // ○ Zip Code (only validated if the payment method is “credit card”)
 // ○ CVV (only validated if the payment method is “credit card”)
 const $nameLetters = $('label[for="name"]');
+const $emailLetters = $('label[for="mail"]');
+// credit card
+const selected = $('#payment option:selected').text();
+const $ccNum = $('label[for="cc-num"]');
+const $zip = $('label[for="zip"]');
+const $cvv = $('label[for="cvv"]');
+console.log($ccNum);
+console.log($zip);
+console.log($cvv);
 
 $( 'button' ).on( 'click', function(e) {
-
+  let selected = $(this).val();
+  // name input
   if ( $('#name').val() === "" ) {
     $nameLetters.css({"color": "red", "font-weight": "bold"});
     $('#name').css({"border-color": "red"});
   }
+  // email input
+  if ( $('#mail').val() === "" ) {
+    $emailLetters.css({"color": "red", "font-weight": "bold"});
+    $('#mail').css({"border-color": "red"});
+  }
+  // credit card
+  // if ( selected === 'Credit Card') {
+  //   if ( $('#cc-num').val() === "" ) {
+  //     $ccNum.css({"color": "red", "font-weight": "bold"});
+  //     $('#cc-num').css({"border-color": "red"});
+  //   }
+  //   if ( $('#zip').val() === "" ) {
+  //     $zip.css({"color": "red", "font-weight": "bold"});
+  //     $('#zip').css({"border-color": "red"});
+  //   }
+  //   if ( $('#cvv').val() === "" ) {
+  //     $cvv.css({"color": "red", "font-weight": "bold"});
+  //     $('#cvv').css({"border-color": "red"});
+  //   }
+  // }
   e.preventDefault();
 });
 
