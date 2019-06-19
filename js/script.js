@@ -140,29 +140,114 @@ $('#payment').change(function () {
 //--------------------------------------------
 // Form Validation
 //--------------------------------------------
+// regex
+const emailRegex = /^\w+@\w+\..{3}?$/;
+const cardRegex = /^\d{13,16}$/;
+const zipRegex = /^\d{5}$/;
+const cvvRegex = /^\d{3}$/;
+
+// email validate
+function validEmail ( email ) {
+  return emailRegex.test( email );
+}
+
+// credit card validate
+function validCard ( card ) {
+  return cardRegex.test( card );
+}
+
+function validZip ( zip ) {
+  return zipRegex.test( zip );
+}
+
+function validCvv ( cvv ) {
+  return cvvRegex.test( cvv );
+}
+
+// var visaPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+// var mastPattern = /^(?:5[1-5][0-9]{14})$/;
+// var amexPattern = /^(?:3[47][0-9]{13})$/;
+// var discPattern = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+
+// function validateCreditCardNumber() {
+//
+//     var ccNum  = document.getElementById("cardNum").value;
+//
+//     var isVisa = visaPattern.test( ccNum ) === true;
+//     var isMast = mastPattern.test( ccNum ) === true;
+//     var isAmex = amexPattern.test( ccNum ) === true;
+//     var isDisc = discPattern.test( ccNum ) === true;
+//
+//     if( isVisa || isMast || isAmex || isDisc ) {
+//         // at least one regex matches, so the card number is valid.
+//
+//         if( isVisa ) {
+//             // Visa-specific logic goes here
+//         }
+//         else if( isMast ) {
+//              // Mastercard-specific logic goes here
+//         }
+//         else if( isAmex ) {
+//             // AMEX-specific logic goes here
+//         }
+//         else if( isDisc ) {
+//             // Discover-specific logic goes here
+//         }
+//     }
+//     else {
+//         alert("Please enter a valid card number.");
+//     }
+// }
+
+
+// $('#zip').keyup(function () {
+//           var maxChars = 5;
+//           if ($(this).val().length > maxChars) {
+//               $(this).val($(this).val().substr(0, maxChars)).maxlength(5);
+//
+//               //Take action, alert or whatever suits
+//
+//               $('#zip').css({"border-color": "red"});
+//           }
+// });
+
+
+// $(".maxThirtyChars").keyup(function() {
+//         var maxChars = 30;
+//         if ($(this).val().length > maxChars) {
+//             $(this).val($(this).val().substr(0, maxChars));
+//
+//             //Take action, alert or whatever suits
+//             alert("This field can take a maximum of 30 characters");
+//         }
+//     });
+
+// submit validations
 const $nameLetters = $('label[for="name"]');
 const $emailLetters = $('label[for="mail"]');
 const $ccNum = $('label[for="cc-num"]');
 const $zip = $('label[for="zip"]');
 const $cvv = $('label[for="cvv"]');
+// complete fields
 const $warning = $('<label></label>');
-// regex
-const emailRegex = /^\w+@\w+\..{3}?$/;
-const creditCardRegex = /^\d{13,16}$/;
-const zipRegex = /^\d{5}$/;
-const cvvRegex = /^\d{3}$/;
 $('form').append($warning);
-// validations
+const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
+$incomplete.hide();
+// Register Button
 $( 'button' ).on( 'click', function(e) {
   // name input
-  if ($('#name').val() === "" ) {
+  if ( $('#name').val() === "" ) {
     $nameLetters.css({"color": "red", "font-weight": "bold"});
     $('#name').css({"border-color": "red"});
+    e.preventDefault();
+    $incomplete.show();
   }
   // email input
   if ( $('#mail').val() === "" ) {
     $emailLetters.css({"color": "red", "font-weight": "bold"});
     $('#mail').css({"border-color": "red"});
+    e.preventDefault();
+    $incomplete.show();
   }
   // activity section
 
@@ -171,17 +256,20 @@ $( 'button' ).on( 'click', function(e) {
     if ( $('#cc-num').val() === "" ) {
       $ccNum.css({"color": "red", "font-weight": "bold"});
       $('#cc-num').css({"border-color": "red"});
+      e.preventDefault();
+      $incomplete.show();
     }
     if ( $('#zip').val() === "" ) {
       $zip.css({"color": "red", "font-weight": "bold"});
       $('#zip').css({"border-color": "red"});
+      e.preventDefault();
+      $incomplete.show();
     }
     if ($('#cvv').val() === "" ) {
       $cvv.css({"color": "red", "font-weight": "bold"});
       $('#cvv').css({"border-color": "red"});
-
+      e.preventDefault();
+      $incomplete.show();
     }
   }
-  e.preventDefault();
-  const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
 });
