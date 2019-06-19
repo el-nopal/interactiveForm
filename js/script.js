@@ -36,13 +36,11 @@ const $color = $('<option value="default">Please select a T-shirt theme</option>
 $('#color').prepend($color).val('default');
 // hide colors until theme is selected
 $('#color option').hide();
-
 // when a theme is selected colors is given to correct theme
 $('#design').change(function (e) {
   const theme = $(this).val();
   const $jsPuns = $( "#color option:contains('JS Puns')" );
   const $heartJs = $( "#color option:contains('I')" );
-// 'I &#9829; JS' and  'JS Puns'
   if (theme === 'js puns' ) {
     $jsPuns.show();
     $heartJs.hide();
@@ -62,7 +60,6 @@ $('#design').change(function (e) {
 let cost = 0;
 const $total = $('<label></label>');
 $('.activities').append($total);
-
 // Listening for changes in the activity section
 $('.activities').change(function (e) {
 // The DOM `input` element that was just clicked.
@@ -79,7 +76,6 @@ $('.activities').change(function (e) {
   let costOf = $activity.slice(ioDollar);
 // the cost from the variable above, which is currently a string type, and turn it into a number type
   let price = parseInt(costOf);
-
 // updating/displaying cost part 2 ...
   if ( $( $clicked ).prop( "checked" ) ) {
 //add the cost of the currently clicked activity to the total cost variable,
@@ -123,8 +119,8 @@ $('#payment').change( function () {
 });
 const $paypal = $( "div p:contains('Paypal')" ).hide();
 const $bitcoin = $( "div p:contains('Bitcoin')" ).hide();
-
-$('#payment').change(function (e) {
+// payment selections
+$('#payment').change(function () {
   const payment = $(this).val();
   const $credit = $( '#credit-card' );
   if (payment === 'paypal' ) {
@@ -146,16 +142,20 @@ $('#payment').change(function (e) {
 //--------------------------------------------
 const $nameLetters = $('label[for="name"]');
 const $emailLetters = $('label[for="mail"]');
-// credit card
-// const selected = $('#payment option:selected').text();
 const $ccNum = $('label[for="cc-num"]');
 const $zip = $('label[for="zip"]');
 const $cvv = $('label[for="cvv"]');
-
+const $warning = $('<label></label>');
+// regex
+const emailRegex = /^\w+@\w+\..{3}?$/;
+const creditCardRegex = /^\d{13,16}$/;
+const zipRegex = /^\d{5}$/;
+const cvvRegex = /^\d{3}$/;
+$('form').append($warning);
+// validations
 $( 'button' ).on( 'click', function(e) {
-  // let selected = $(this).val();
   // name input
-  if ( $('#name').val() === "" ) {
+  if ($('#name').val() === "" ) {
     $nameLetters.css({"color": "red", "font-weight": "bold"});
     $('#name').css({"border-color": "red"});
   }
@@ -167,29 +167,21 @@ $( 'button' ).on( 'click', function(e) {
   // activity section
 
   // credit card
-  // if ( selected === 'Credit Card') {
-  //   if ( $('#cc-num').val() === "" ) {
-  //     $ccNum.css({"color": "red", "font-weight": "bold"});
-  //     $('#cc-num').css({"border-color": "red"});
-  //   }
-  //   if ( $('#zip').val() === "" ) {
-  //     $zip.css({"color": "red", "font-weight": "bold"});
-  //     $('#zip').css({"border-color": "red"});
-  //   }
-  //   if ( $('#cvv').val() === "" ) {
-  //     $cvv.css({"color": "red", "font-weight": "bold"});
-  //     $('#cvv').css({"border-color": "red"});
-  //   }
-  // }
-  e.preventDefault();
-});
+  if ( $('#payment').val() === 'credit card' ) {
+    if ( $('#cc-num').val() === "" ) {
+      $ccNum.css({"color": "red", "font-weight": "bold"});
+      $('#cc-num').css({"border-color": "red"});
+    }
+    if ( $('#zip').val() === "" ) {
+      $zip.css({"color": "red", "font-weight": "bold"});
+      $('#zip').css({"border-color": "red"});
+    }
+    if ($('#cvv').val() === "" ) {
+      $cvv.css({"color": "red", "font-weight": "bold"});
+      $('#cvv').css({"border-color": "red"});
 
-// form validation example
-// $( "form" ).submit(function( event ) {
-//   if ( $( "input:first" ).val() === "javatpoint" ) {
-//     $( "span" ).text( "Submitted Successfully." ).show();
-//     return;
-//   }
-//   $( "span" ).text( "Not valid!" ).show().fadeOut( 2000 );
-//   event.preventDefault();
-// });
+    }
+  }
+  e.preventDefault();
+  const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
+});
