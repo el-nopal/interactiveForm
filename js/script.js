@@ -98,15 +98,16 @@ $('.activities').change(function (e) {
 // Disabling conflicting activities part 2 ... -----------------------
   let $checkboxes = $('.activities input:checked');
   for (let i = 0; i < $checkboxes.length; i++) {
-    $checkboxes[i];
-    // if (true === true && true !== false ) {
-    //   $checkboxes[i].disabled = true;
-    // } else {
-    //   $checkboxes[i].disabled = false;
-    // }
+    if (true) {
+
+    } else {
+
+    }
   }
   console.log($checkboxes);
-
+  // var str = "The rain in SPAIN stays mainly in the plain";
+  // var res = str.match(/ain/g);
+// dont pass --------------
 });
 
 //--------------------------------------------
