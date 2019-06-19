@@ -67,8 +67,7 @@ $('.activities').change(function (e) {
 // The text content of the above `input` element’s parent `label` element.
   let $activity = $clicked.parent().text();
   console.log($activity);
-
-// updating/displaying cost part 1 ...
+// UPDATING/DISPLAYING COST PART 1 ... -------------------------
 // The index of the dollar sign ‘$’
   const dollarSign = '$';
   let ioDollar = $activity.indexOf(dollarSign) + 1;
@@ -76,7 +75,7 @@ $('.activities').change(function (e) {
   let costOf = $activity.slice(ioDollar);
 // the cost from the variable above, which is currently a string type, and turn it into a number type
   let price = parseInt(costOf);
-// updating/displaying cost part 2 ...
+// UPDATING/DISPLAYING COST PART 2 ... -------------------------
   if ( $( $clicked ).prop( "checked" ) ) {
 //add the cost of the currently clicked activity to the total cost variable,
     cost += price;
@@ -88,15 +87,15 @@ $('.activities').change(function (e) {
 // concatenated with the current value of the total cost variable
   let $totalCost = $total.text('Total: $ ' + cost).css({"color": "green", "font-weight": "bold", "font-size": "20px"});
 
-// Disabling conflicting activities part 1 ...
+// Disabling conflicting activities part 1 ... ----------------
   const emDash = '—';
   const comma = ',';
-  let ioDash = $activity.indexOf(emDash);
+  let ioDash = $activity.indexOf(emDash) + 1;
   let ioComma = $activity.indexOf(comma);
-  let dayTime = $activity.slice(ioDash, ioComma);
-  console.log(dayTime);
+  let dayNtime = $activity.slice(ioDash, ioComma);
+  console.log(dayNtime);
 
-// Disabling conflicting activities part 2 ...
+// Disabling conflicting activities part 2 ... -----------------------
   let $checkboxes = $('.activities input:checked');
   for (let i = 0; i < $checkboxes.length; i++) {
     $checkboxes[i];
@@ -140,99 +139,32 @@ $('#payment').change(function () {
 //--------------------------------------------
 // Form Validation
 //--------------------------------------------
-// regex
-const emailRegex = /^\w+@\w+\..{3}?$/;
-const cardRegex = /^\d{13,16}$/;
-const zipRegex = /^\d{5}$/;
-const cvvRegex = /^\d{3}$/;
-
 // email validate
 function validEmail ( email ) {
+  const emailRegex = /^\w+@\w+\..{3}?$/;
   return emailRegex.test( email );
 }
 
-// credit card validate
-function validCard ( card ) {
-  return cardRegex.test( card );
-}
-
-function validZip ( zip ) {
-  return zipRegex.test( zip );
-}
-
-function validCvv ( cvv ) {
-  return cvvRegex.test( cvv );
-}
-
-// var visaPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-// var mastPattern = /^(?:5[1-5][0-9]{14})$/;
-// var amexPattern = /^(?:3[47][0-9]{13})$/;
-// var discPattern = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
-
-// function validateCreditCardNumber() {
-//
-//     var ccNum  = document.getElementById("cardNum").value;
-//
-//     var isVisa = visaPattern.test( ccNum ) === true;
-//     var isMast = mastPattern.test( ccNum ) === true;
-//     var isAmex = amexPattern.test( ccNum ) === true;
-//     var isDisc = discPattern.test( ccNum ) === true;
-//
-//     if( isVisa || isMast || isAmex || isDisc ) {
-//         // at least one regex matches, so the card number is valid.
-//
-//         if( isVisa ) {
-//             // Visa-specific logic goes here
-//         }
-//         else if( isMast ) {
-//              // Mastercard-specific logic goes here
-//         }
-//         else if( isAmex ) {
-//             // AMEX-specific logic goes here
-//         }
-//         else if( isDisc ) {
-//             // Discover-specific logic goes here
-//         }
-//     }
-//     else {
-//         alert("Please enter a valid card number.");
-//     }
-// }
-
-
-// $('#zip').keyup(function () {
-//           var maxChars = 5;
-//           if ($(this).val().length > maxChars) {
-//               $(this).val($(this).val().substr(0, maxChars)).maxlength(5);
-//
-//               //Take action, alert or whatever suits
-//
-//               $('#zip').css({"border-color": "red"});
-//           }
-// });
-
-
-// $(".maxThirtyChars").keyup(function() {
-//         var maxChars = 30;
-//         if ($(this).val().length > maxChars) {
-//             $(this).val($(this).val().substr(0, maxChars));
-//
-//             //Take action, alert or whatever suits
-//             alert("This field can take a maximum of 30 characters");
-//         }
-//     });
-
-// submit validations
+// REGISTER BUTTON VALIDATION
 const $nameLetters = $('label[for="name"]');
 const $emailLetters = $('label[for="mail"]');
 const $ccNum = $('label[for="cc-num"]');
 const $zip = $('label[for="zip"]');
 const $cvv = $('label[for="cvv"]');
+// regex
+const cardRegex = /^\d{13,16}$/;
+const zipRegex = /^\d{5}$/;
+const cvvRegex = /^\d{3}$/;
+const cardVal = $('#cc-num').val();
+const zipVal = $('#zip').val();
+const cvvVal = $('#cvv').val();
+
 // complete fields
 const $warning = $('<label></label>');
 $('form').append($warning);
 const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
 $incomplete.hide();
+
 // Register Button
 $( 'button' ).on( 'click', function(e) {
   // name input
@@ -253,19 +185,19 @@ $( 'button' ).on( 'click', function(e) {
 
   // credit card
   if ( $('#payment').val() === 'credit card' ) {
-    if ( $('#cc-num').val() === "" ) {
+    if ( $('#cc-num').val() === "" || (cardRegex.exec(cardVal)) === null) {
       $ccNum.css({"color": "red", "font-weight": "bold"});
       $('#cc-num').css({"border-color": "red"});
       e.preventDefault();
       $incomplete.show();
     }
-    if ( $('#zip').val() === "" ) {
+    if ( $('#zip').val() === "" || (zipRegex.exec(zipVal)) === null ) {
       $zip.css({"color": "red", "font-weight": "bold"});
       $('#zip').css({"border-color": "red"});
       e.preventDefault();
       $incomplete.show();
     }
-    if ($('#cvv').val() === "" ) {
+    if ($('#cvv').val() === "" || (cvvRegex.exec(cvvVal)) === null ) {
       $cvv.css({"color": "red", "font-weight": "bold"});
       $('#cvv').css({"border-color": "red"});
       e.preventDefault();
