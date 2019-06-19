@@ -96,17 +96,19 @@ $('.activities').change(function (e) {
   console.log(dayNtime);
 
 // Disabling conflicting activities part 2 ... -----------------------
-  let $checkboxes = $('.activities input:checked');
-  for (let i = 0; i < $checkboxes.length; i++) {
-    if (true) {
+// The .each() method is designed to make DOM looping constructs
+// concise and less error-prone.the keyword this refers to the element
+const test =  $('.activities input').each(function (e){
+      if ( true && true ) {
+        if ( $('.activities input:checked') ) {
+          $(this).disabled = true;
+        } else {
+          $(this).disabled = false;
+        }
+      }
 
-    } else {
-
-    }
-  }
-  console.log($checkboxes);
-  // var str = "The rain in SPAIN stays mainly in the plain";
-  // var res = str.match(/ain/g);
+  });
+console.log(test);
 // dont pass --------------
 });
 
