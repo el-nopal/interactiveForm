@@ -136,6 +136,12 @@ $('#payment').change(function () {
     $bitcoin.hide();
   }
 });
+// max input field for credit cardVal
+$(document).ready(function () {
+    $('#cc-num').prop('maxLength',16);
+    $('#zip').prop('maxLength',5);
+    $("#cvv").prop('maxLength', 3);
+});
 //--------------------------------------------
 // Form Validation
 //--------------------------------------------
@@ -159,7 +165,7 @@ const cardVal = $('#cc-num').val();
 const zipVal = $('#zip').val();
 const cvvVal = $('#cvv').val();
 
-// complete fields
+// complete fields warning
 const $warning = $('<label></label>');
 $('form').append($warning);
 const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
@@ -167,23 +173,23 @@ $incomplete.hide();
 
 // Register Button
 $( 'button' ).on( 'click', function(e) {
-  // name input
+// name input
   if ( $('#name').val() === "" ) {
     $nameLetters.css({"color": "red", "font-weight": "bold"});
     $('#name').css({"border-color": "red"});
     e.preventDefault();
     $incomplete.show();
   }
-  // email input
+// email input
   if ( $('#mail').val() === "" ) {
     $emailLetters.css({"color": "red", "font-weight": "bold"});
     $('#mail').css({"border-color": "red"});
     e.preventDefault();
     $incomplete.show();
   }
-  // activity section
+// activity section
 
-  // credit card
+// credit card
   if ( $('#payment').val() === 'credit card' ) {
     if ( $('#cc-num').val() === "" || (cardRegex.exec(cardVal)) === null) {
       $ccNum.css({"color": "red", "font-weight": "bold"});
