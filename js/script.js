@@ -95,6 +95,9 @@ $('.activities').change(function (e) {
   console.log(dayNtime);
 
 // Disabling conflicting activities part 2 ... -----------------------
+//-------------------------
+// BELOW HERE, HELP MEEEE !!!
+//-------------------------
   // The .each() method is designed to make DOM looping constructs
   // concise and less error-prone.the keyword this refers to the element
 
@@ -103,6 +106,9 @@ $('.activities').change(function (e) {
 // let $activity = $clicked.parent().text();
 // this makes the checked activity active -->
 const $clickedActivity = $( $clicked ).prop( "checked" );
+const timeRegex = /—(.+),/;
+// const userActivity = userInputCheckbox.parent().text();
+let conflictingActivities = dayNtime.match(timeRegex);
 
 let test =  $('.activities input').each(function (e){
       if ( true && !true ) {
@@ -116,7 +122,7 @@ let test =  $('.activities input').each(function (e){
   });
 console.log(test);
 
-// dont pass --------------
+// dont pass / end of activity function --------------
 });
 
 //--------------------------------------------
