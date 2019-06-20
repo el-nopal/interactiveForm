@@ -89,10 +89,9 @@ $('.activities').change(function (e) {
 // Disabling conflicting activities part 1 ... ----------------
   const emDash = '—';
   const comma = ',';
-  let ioDash = $activity.indexOf(emDash) + 1;
-  let ioComma = $activity.indexOf(comma);
-  let dayNtime = $activity.slice(ioDash, ioComma);
-  console.log(dayNtime);
+  const ioDash = $activity.indexOf(emDash) + 1;
+  const ioComma = $activity.indexOf(comma);
+  const dayNtime = $activity.slice(ioDash, ioComma);
 
 // Disabling conflicting activities part 2 ... -----------------------
 //-------------------------
@@ -101,26 +100,27 @@ $('.activities').change(function (e) {
   // The .each() method is designed to make DOM looping constructs
   // concise and less error-prone.the keyword this refers to the element
 
-// vars already used
-// let $clicked = $(e.target);
-// let $activity = $clicked.parent().text();
-// this makes the checked activity active -->
-const $clickedActivity = $( $clicked ).prop( "checked" );
-const timeRegex = /—(.+),/;
-// const userActivity = userInputCheckbox.parent().text();
-let conflictingActivities = dayNtime.match(timeRegex);
+  // vars already used
+  // let $clicked = $(e.target);
+  // let $activity = $clicked.parent().text();
 
-let test =  $('.activities input').each(function (e){
-      if ( true && !true ) {
-        if ( $clickedActivity ) {
-          $(this).disabled = true;
-        } else {
+  // const timeRegex = /—(.+),/;
+  // let conflictingActivities = something.match(timeRegex);
+
+  // the element is $(activities input), this is where 'this' comes in
+const times =  $('.activities input').each(function (i, element){
+    const $clickedActivity = $( this ).prop( "checked" );
+    console.log($clickedActivity);
+    if ( true && true ) {
+      if ( $clickedActivity ) {
           $(this).disabled = false;
+        } else {
+          $(this).disabled = true;
         }
-      }
-
+    }
   });
-console.log(test);
+  console.log(times);
+
 
 // dont pass / end of activity function --------------
 });
