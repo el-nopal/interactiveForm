@@ -62,29 +62,29 @@ const $total = $('<label></label>');
 $('.activities').append($total);
 // Listening for changes in the activity section
 $('.activities').change(function (e) {
-// The DOM `input` element that was just clicked.
+  // The DOM `input` element that was just clicked.
   let $clicked = $(e.target);
-// The text content of the above `input` element’s parent `label` element.
+  // The text content of the above `input` element’s parent `label` element.
   let $activity = $clicked.parent().text();
   console.log($activity);
 // UPDATING/DISPLAYING COST PART 1 ... -------------------------
-// The index of the dollar sign ‘$’
+  // The index of the dollar sign ‘$’
   const dollarSign = '$';
   let ioDollar = $activity.indexOf(dollarSign) + 1;
-// The cost of the activity the was just clicked.
+  // The cost of the activity the was just clicked.
   let costOf = $activity.slice(ioDollar);
-// the cost from the variable above, which is currently a string type, and turn it into a number type
+  // the cost from the variable above, which is currently a string type, and turn it into a number type
   let price = parseInt(costOf);
 // UPDATING/DISPLAYING COST PART 2 ... -------------------------
   if ( $( $clicked ).prop( "checked" ) ) {
-//add the cost of the currently clicked activity to the total cost variable,
+    //add the cost of the currently clicked activity to the total cost variable,
     cost += price;
   } else {
-// else subtract the cost.
+    // else subtract the cost.
     cost -= price;
   }
-// set the text of the total cost element equal to the string ‘Total: $’
-// concatenated with the current value of the total cost variable
+  // set the text of the total cost element equal to the string ‘Total: $’
+  // concatenated with the current value of the total cost variable
   let $totalCost = $total.text('Total: $ ' + cost).css({"color": "green", "font-weight": "bold", "font-size": "20px"});
 // Disabling conflicting activities part 1 ... ----------------
   const emDash = '—';
@@ -93,17 +93,20 @@ $('.activities').change(function (e) {
   let ioComma = $activity.indexOf(comma);
   let dayNtime = $activity.slice(ioDash, ioComma);
   console.log(dayNtime);
+  
 // Disabling conflicting activities part 2 ... -----------------------
-// The .each() method is designed to make DOM looping constructs
-// concise and less error-prone.the keyword this refers to the element
+  // The .each() method is designed to make DOM looping constructs
+  // concise and less error-prone.the keyword this refers to the element
 
 // vars already used
 // let $clicked = $(e.target);
 // let $activity = $clicked.parent().text();
-// $( $clicked ).prop( "checked" ) - this makes the checked activity active
-const test =  $('.activities input').each(function (e){
+// this makes the checked activity active -->
+const $clickedActivity = $( $clicked ).prop( "checked" );
+
+let test =  $('.activities input').each(function (e){
       if ( true && !true ) {
-        if ( $('.activities input:checked') ) {
+        if ( $clickedActivity ) {
           $(this).disabled = true;
         } else {
           $(this).disabled = false;
@@ -112,6 +115,7 @@ const test =  $('.activities input').each(function (e){
 
   });
 console.log(test);
+
 // dont pass --------------
 });
 
@@ -194,7 +198,11 @@ $( 'button' ).on( 'click', function(e) {
     $incomplete.show();
   }
 // activity section
-
+  if ( !$( '.activities input' ).prop( "checked" ) ) {
+    $('.activities legend').css({"color": "red", "font-weight": "bold"});
+    e.preventDefault();
+    $incomplete.show();
+  }
 // credit card
   if ( $('#payment').val() === 'credit card' ) {
     if ( $('#cc-num').val() === "" || (cardRegex.exec(cardVal)) === null) {
