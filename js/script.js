@@ -100,22 +100,58 @@ $('.activities').change(function (e) {
   // The .each() method is designed to make DOM looping constructs
   // concise and less error-prone.the keyword this refers to the element
 
-  // const timeRegex = /—(.+),/;
-  // let conflictingActivities = something.match(timeRegex);
+// the element is $(activities input), this is where 'this' comes in
+// const times =  $('.activities input').each(function (i, element){
+//     const $clickedActivity = $( this ).prop( "checked" );
+//     // console.log($clickedActivity);
+//     if ( true && true ) {
+//       if ( true ) {
+//           $clickedActivity.disabled = false;
+//         } else {
+//           $clickedActivity.disabled = true;
+//         }
+//     }
+//   });
+//   console.log(times);
 
-  // the element is $(activities input), this is where 'this' comes in
-const times =  $('.activities input').each(function (i, element){
-    const $clickedActivity = $( this ).prop( "checked" );
-    // console.log($clickedActivity);
-    if ( true && true ) {
-      if ( true ) {
-          $clickedActivity.disabled = false;
-        } else {
-          $clickedActivity.disabled = true;
-        }
-    }
+// variables to select activity checkboxes
+  const $jsFrameworks = $("input[name = 'js-frameworks']");
+  const $jsLibs = $("input[name = 'js-libs']");
+  const $express = $("input[name = 'express']");
+  const $node = $("input[name = 'node']");
+
+// if js-frameworks is checked, stop express from being checked
+  $( $jsFrameworks ).change(function() {
+      if ( $( this ).prop( "checked" ) ){
+          $express.prop("disabled", true);
+      } else {
+          $express.prop("disabled", false);
+      }
   });
-  console.log(times);
+// if express is checked, stop js-frameworks from being checked
+  $($express).change(function() {
+      if ( $( this ).prop( "checked" ) ) {
+          $jsFrameworks.prop("disabled", true);
+      } else {
+          $jsFrameworks.prop("disabled", false);
+      }
+  });
+  // if js-libs is checked, stop node from being checked
+  $($jsLibs).change(function() {
+      if ( $( this ).prop( "checked" ) ) {
+          $node.prop("disabled", true);
+      } else {
+          $node.prop("disabled", false);
+      }
+  });
+  // if node is checked, stop js-libs from being checked
+  $($node).change(function() {
+      if ( $( this ).prop( "checked" )) {
+          $jsLibs.prop("disabled", true);
+      } else {
+          $jsLibs.prop("disabled", false);
+      }
+  });
 
 // dont pass / end of activity function --------------
 });
