@@ -100,27 +100,22 @@ $('.activities').change(function (e) {
   // The .each() method is designed to make DOM looping constructs
   // concise and less error-prone.the keyword this refers to the element
 
-  // vars already used
-  // let $clicked = $(e.target);
-  // let $activity = $clicked.parent().text();
-
   // const timeRegex = /—(.+),/;
   // let conflictingActivities = something.match(timeRegex);
 
   // the element is $(activities input), this is where 'this' comes in
 const times =  $('.activities input').each(function (i, element){
     const $clickedActivity = $( this ).prop( "checked" );
-    console.log($clickedActivity);
-    if ( true && true ) {
-      if ( $clickedActivity ) {
-          $(this).disabled = false;
+    // console.log($clickedActivity);
+    if ( $('.activities input')[1] ) {
+      if ( true ) {
+          $clickedActivity.disabled = false;
         } else {
-          $(this).disabled = true;
+          $clickedActivity.disabled = true;
         }
     }
   });
   console.log(times);
-
 
 // dont pass / end of activity function --------------
 });
