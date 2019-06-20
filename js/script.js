@@ -86,7 +86,6 @@ $('.activities').change(function (e) {
 // set the text of the total cost element equal to the string ‘Total: $’
 // concatenated with the current value of the total cost variable
   let $totalCost = $total.text('Total: $ ' + cost).css({"color": "green", "font-weight": "bold", "font-size": "20px"});
-
 // Disabling conflicting activities part 1 ... ----------------
   const emDash = '—';
   const comma = ',';
@@ -94,12 +93,16 @@ $('.activities').change(function (e) {
   let ioComma = $activity.indexOf(comma);
   let dayNtime = $activity.slice(ioDash, ioComma);
   console.log(dayNtime);
-
 // Disabling conflicting activities part 2 ... -----------------------
 // The .each() method is designed to make DOM looping constructs
 // concise and less error-prone.the keyword this refers to the element
+
+// vars already used
+// let $clicked = $(e.target);
+// let $activity = $clicked.parent().text();
+// $( $clicked ).prop( "checked" ) - this makes the checked activity active
 const test =  $('.activities input').each(function (e){
-      if ( true && true ) {
+      if ( true && !true ) {
         if ( $('.activities input:checked') ) {
           $(this).disabled = true;
         } else {
