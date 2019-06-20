@@ -100,19 +100,19 @@ $('.activities').change(function (e) {
   // The .each() method is designed to make DOM looping constructs
   // concise and less error-prone.the keyword this refers to the element
 
-// the element is $(activities input), this is where 'this' comes in
-// const times =  $('.activities input').each(function (i, element){
-//     const $clickedActivity = $( this ).prop( "checked" );
-//     // console.log($clickedActivity);
-//     if ( true && true ) {
-//       if ( true ) {
-//           $clickedActivity.disabled = false;
-//         } else {
-//           $clickedActivity.disabled = true;
-//         }
-//     }
-//   });
-//   console.log(times);
+  // the element is $(activities input), this is where 'this' comes in
+  // const times =  $('.activities input').each(function (i, element){
+  //     const $clickedActivity = $( this ).prop( "checked" );
+  //     // console.log($clickedActivity);
+  //     if ( true && true ) {
+  //       if ( true ) {
+  //           $clickedActivity.disabled = false;
+  //         } else {
+  //           $clickedActivity.disabled = true;
+  //         }
+  //     }
+  //   });
+  //   console.log(times);
 
 // variables to select activity checkboxes
   const $jsFrameworks = $("input[name = 'js-frameworks']");
