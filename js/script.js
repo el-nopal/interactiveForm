@@ -107,7 +107,7 @@ $('.activities').change(function (e) {
 const times =  $('.activities input').each(function (i, element){
     const $clickedActivity = $( this ).prop( "checked" );
     // console.log($clickedActivity);
-    if ( $('.activities input')[1] ) {
+    if ( true && true ) {
       if ( true ) {
           $clickedActivity.disabled = false;
         } else {
