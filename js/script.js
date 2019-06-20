@@ -93,7 +93,7 @@ $('.activities').change(function (e) {
   let ioComma = $activity.indexOf(comma);
   let dayNtime = $activity.slice(ioDash, ioComma);
   console.log(dayNtime);
-  
+
 // Disabling conflicting activities part 2 ... -----------------------
   // The .each() method is designed to make DOM looping constructs
   // concise and less error-prone.the keyword this refers to the element
@@ -126,6 +126,8 @@ console.log(test);
 $('#payment').change( function () {
   $('#payment option').eq(0).hide();
 });
+$('option[value="credit card"]').attr('selected', true);
+
 const $paypal = $( "div p:contains('Paypal')" ).hide();
 const $bitcoin = $( "div p:contains('Bitcoin')" ).hide();
 // payment selections
