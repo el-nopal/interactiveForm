@@ -88,22 +88,28 @@ $('.activities').change(function (e) {
   // set the text of the total cost element equal to the string ‘Total: $’ concatenated with the current value of the total cost variable
   let $totalCost = $total.text('Total: $ ' + cost).css({"color": "green", "font-weight": "bold", "font-size": "20px"});
 // Disabling conflicting activities part 1 ... ----------------
-  // let $clicked = $(e.target);
-  //  $( $clicked ).prop( "checked" )
-  // let $activity = $clicked.parent().text();
+  // let $activity = $(e.target).parent().text();
   let emDash = '—';
   let comma = ',';
   let ioDash = $activity.indexOf(emDash) + 1;
   let ioComma = $activity.indexOf(comma);
   let dayNtime = $activity.slice(ioDash, ioComma);
+  console.log(dayNtime);
 // Disabling conflicting activities part 2 ... -----------------------
 //-------------------------
 // BELOW HERE, HELP MEEEE !!!
 //-------------------------
 // The .each() method is designed to make DOM looping constructs concise and less error-prone.the keyword this refers to the element
 // the element is $(activities input), this is where 'this' comes in
-  // $('.activities input').each(function (i, element){
+  $('.activities input').each(function (i, element){
     // variables
+    let $clickedActivity = $( e.target ).prop( "checked" );
+    let $inputClicked = $clickedActivity[i];
+    console.log($clickedActivity);
+    console.log($inputClicked);
+    if ( $clickedActivity === $inputClicked ) {
+
+    }
     // if ( something === something && something !== something ) {
     //   if ( $clickedActivity ) {
     //       something.disabled = false;
@@ -111,46 +117,7 @@ $('.activities').change(function (e) {
     //       something.disabled = true;
     //     }
     // }
-  // });
-
-// variables to select activity checkboxes
-//   const $jsFrameworks = $("input[name = 'js-frameworks']");
-//   const $jsLibs = $("input[name = 'js-libs']");
-//   const $express = $("input[name = 'express']");
-//   const $node = $("input[name = 'node']");
-//
-// // if js-frameworks is checked, stop express from being checked
-//   $( $jsFrameworks ).change(function() {
-//       if ( $( this ).prop( "checked" ) ){
-//           $express.prop("disabled", true);
-//       } else {
-//           $express.prop("disabled", false);
-//       }
-//   });
-// // if express is checked, stop js-frameworks from being checked
-//   $($express).change(function() {
-//       if ( $( this ).prop( "checked" ) ) {
-//           $jsFrameworks.prop("disabled", true);
-//       } else {
-//           $jsFrameworks.prop("disabled", false);
-//       }
-//   });
-//   // if js-libs is checked, stop node from being checked
-//   $($jsLibs).change(function() {
-//       if ( $( this ).prop( "checked" ) ) {
-//           $node.prop("disabled", true);
-//       } else {
-//           $node.prop("disabled", false);
-//       }
-//   });
-//   // if node is checked, stop js-libs from being checked
-//   $($node).change(function() {
-//       if ( $( this ).prop( "checked" )) {
-//           $jsLibs.prop("disabled", true);
-//       } else {
-//           $jsLibs.prop("disabled", false);
-//       }
-//   });
+  });
 
 // dont pass / end of activity function --------------
 });
@@ -218,56 +185,56 @@ function isValidCVV (number) {
 
 // REGISTER BUTTON VALIDATION
 // complete fields warning
-const $warning = $('<label></label>');
-$('form').append($warning);
-const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
-$incomplete.hide();
-const $nameLetters = $('label[for="name"]');
-const $emailLetters = $('label[for="mail"]');
-const $ccNum = $('label[for="cc-num"]');
-const $zip = $('label[for="zip"]');
-const $cvv = $('label[for="cvv"]');
-// Register Button
-$( 'button' ).on( 'click', function(e) {
-// name input
-  if ( $('#name').val() === "" ) {
-    $nameLetters.css({"color": "red", "font-weight": "bold"});
-    $('#name').css({"border-color": "red"});
-    e.preventDefault();
-    $incomplete.show();
-  }
-// email input
-  if ( $('#mail').val() === "" ) {
-    $emailLetters.css({"color": "red", "font-weight": "bold"});
-    $('#mail').css({"border-color": "red"});
-    e.preventDefault();
-    $incomplete.show();
-  }
-// activity section
-  if ( $( '.activities input' ).prop( "checked" ) ) {
-    $('.activities legend').css({"color": "red", "font-weight": "bold"});
-    e.preventDefault();
-    $incomplete.show();
-  }
-// credit card
-  if ( $('#payment').val() === 'credit card' ) {
-    if ( $('#cc-num').val() === "" ) {
-      $ccNum.css({"color": "red", "font-weight": "bold"});
-      $('#cc-num').css({"border-color": "red"});
-      e.preventDefault();
-      $incomplete.show();
-    }
-    if ( $('#zip').val() === "" ) {
-      $zip.css({"color": "red", "font-weight": "bold"});
-      $('#zip').css({"border-color": "red"});
-      e.preventDefault();
-      $incomplete.show();
-    }
-    if ($('#cvv').val() === "" ) {
-      $cvv.css({"color": "red", "font-weight": "bold"});
-      $('#cvv').css({"border-color": "red"});
-      e.preventDefault();
-      $incomplete.show();
-    }
-  }
-});
+// const $warning = $('<label></label>');
+// $('form').append($warning);
+// const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
+// $incomplete.hide();
+// const $nameLetters = $('label[for="name"]');
+// const $emailLetters = $('label[for="mail"]');
+// const $ccNum = $('label[for="cc-num"]');
+// const $zip = $('label[for="zip"]');
+// const $cvv = $('label[for="cvv"]');
+// // Register Button
+// $( 'button' ).on( 'click', function(e) {
+// // name input
+//   if ( $('#name').val() === "" ) {
+//     $nameLetters.css({"color": "red", "font-weight": "bold"});
+//     $('#name').css({"border-color": "red"});
+//     e.preventDefault();
+//     $incomplete.show();
+//   }
+// // email input
+//   if ( $('#mail').val() === "" ) {
+//     $emailLetters.css({"color": "red", "font-weight": "bold"});
+//     $('#mail').css({"border-color": "red"});
+//     e.preventDefault();
+//     $incomplete.show();
+//   }
+// // activity section
+//   if ( $( '.activities input' ).prop( "checked" ) ) {
+//     $('.activities legend').css({"color": "red", "font-weight": "bold"});
+//     e.preventDefault();
+//     $incomplete.show();
+//   }
+// // credit card
+//   if ( $('#payment').val() === 'credit card' ) {
+//     if ( $('#cc-num').val() === "" ) {
+//       $ccNum.css({"color": "red", "font-weight": "bold"});
+//       $('#cc-num').css({"border-color": "red"});
+//       e.preventDefault();
+//       $incomplete.show();
+//     }
+//     if ( $('#zip').val() === "" ) {
+//       $zip.css({"color": "red", "font-weight": "bold"});
+//       $('#zip').css({"border-color": "red"});
+//       e.preventDefault();
+//       $incomplete.show();
+//     }
+//     if ($('#cvv').val() === "" ) {
+//       $cvv.css({"color": "red", "font-weight": "bold"});
+//       $('#cvv').css({"border-color": "red"});
+//       e.preventDefault();
+//       $incomplete.show();
+//     }
+//   }
+// });
