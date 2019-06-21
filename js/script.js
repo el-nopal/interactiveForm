@@ -179,56 +179,56 @@ function isValidCVV (number) {
 
 // REGISTER BUTTON VALIDATION
 // complete fields warning
-// const $warning = $('<label></label>');
-// $('form').append($warning);
-// const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
-// $incomplete.hide();
-// const $nameLetters = $('label[for="name"]');
-// const $emailLetters = $('label[for="mail"]');
-// const $ccNum = $('label[for="cc-num"]');
-// const $zip = $('label[for="zip"]');
-// const $cvv = $('label[for="cvv"]');
-// // Register Button
-// $( 'button' ).on( 'click', function(e) {
-// // name input
-//   if ( $('#name').val() === "" ) {
-//     $nameLetters.css({"color": "red", "font-weight": "bold"});
-//     $('#name').css({"border-color": "red"});
-//     e.preventDefault();
-//     $incomplete.show();
-//   }
-// // email input
-//   if ( $('#mail').val() === "" ) {
-//     $emailLetters.css({"color": "red", "font-weight": "bold"});
-//     $('#mail').css({"border-color": "red"});
-//     e.preventDefault();
-//     $incomplete.show();
-//   }
-// // activity section
-//   if ( $( '.activities input' ).prop( "checked" ) ) {
-//     $('.activities legend').css({"color": "red", "font-weight": "bold"});
-//     e.preventDefault();
-//     $incomplete.show();
-//   }
-// // credit card
-//   if ( $('#payment').val() === 'credit card' ) {
-//     if ( $('#cc-num').val() === "" ) {
-//       $ccNum.css({"color": "red", "font-weight": "bold"});
-//       $('#cc-num').css({"border-color": "red"});
-//       e.preventDefault();
-//       $incomplete.show();
-//     }
-//     if ( $('#zip').val() === "" ) {
-//       $zip.css({"color": "red", "font-weight": "bold"});
-//       $('#zip').css({"border-color": "red"});
-//       e.preventDefault();
-//       $incomplete.show();
-//     }
-//     if ($('#cvv').val() === "" ) {
-//       $cvv.css({"color": "red", "font-weight": "bold"});
-//       $('#cvv').css({"border-color": "red"});
-//       e.preventDefault();
-//       $incomplete.show();
-//     }
-//   }
-// });
+const $warning = $('<label></label>');
+$('form').append($warning);
+const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
+$incomplete.hide();
+const $nameLetters = $('label[for="name"]');
+const $emailLetters = $('label[for="mail"]');
+const $ccNum = $('label[for="cc-num"]');
+const $zip = $('label[for="zip"]');
+const $cvv = $('label[for="cvv"]');
+// Register Button
+$( 'button' ).on( 'click', function(e) {
+// name input
+  if ( $('#name').val() === "" ) {
+    $nameLetters.css({"color": "red", "font-weight": "bold"});
+    $('#name').css({"border-color": "red"});
+    e.preventDefault();
+    $incomplete.show();
+  }
+// email input
+  if ( $('#mail').val() === "" ) {
+    $emailLetters.css({"color": "red", "font-weight": "bold"});
+    $('#mail').css({"border-color": "red"});
+    e.preventDefault();
+    $incomplete.show();
+  }
+// activity section
+  if ( $( '.activities input' ).prop( "checked" ) ) {
+    $('.activities legend').css({"color": "red", "font-weight": "bold"});
+    e.preventDefault();
+    $incomplete.show();
+  }
+// credit card
+  if ( $('#payment').val() === 'credit card' ) {
+    if ( $('#cc-num').val() === "" ) {
+      $ccNum.css({"color": "red", "font-weight": "bold"});
+      $('#cc-num').css({"border-color": "red"});
+      e.preventDefault();
+      $incomplete.show();
+    }
+    if ( $('#zip').val() === "" ) {
+      $zip.css({"color": "red", "font-weight": "bold"});
+      $('#zip').css({"border-color": "red"});
+      e.preventDefault();
+      $incomplete.show();
+    }
+    if ($('#cvv').val() === "" ) {
+      $cvv.css({"color": "red", "font-weight": "bold"});
+      $('#cvv').css({"border-color": "red"});
+      e.preventDefault();
+      $incomplete.show();
+    }
+  }
+});
