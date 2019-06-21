@@ -243,19 +243,21 @@ $( 'button' ).on( 'click', function(e) {
     $incomplete.show();
   }
 // activity section
-  // $( '.activities input' ).each( function (i, element) {
-  //   let checked = $(e.target)[i];
-  //   if ( !$( checked ).prop('checked') ) {
-  //     $('.activities legend').css({"color": "red", "font-weight": "bold"});
-  //     e.preventDefault();
-  //     $incomplete.show();
-  //   }
-  // })
-  if ( !$( '.activities input' ).prop('checked') ) {
-    $('.activities legend').css({"color": "red", "font-weight": "bold"});
-    e.preventDefault();
-    $incomplete.show();
-  }
+  $( '.activities input' ).each( function (i, element) {
+    let checked = $(this).val()[i];
+    if ( $( checked ).prop('checked') ) {
+      return false;
+    } else {
+      $('.activities legend').css({"color": "red", "font-weight": "bold"});
+      e.preventDefault();
+      $incomplete.show();
+    }
+  })
+  // if ( !$( '.activities input' ).prop('checked') ) {
+  //   $('.activities legend').css({"color": "red", "font-weight": "bold"});
+  //   e.preventDefault();
+  //   $incomplete.show();
+  // }
 
 
 // credit card
