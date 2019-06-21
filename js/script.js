@@ -100,16 +100,53 @@ $('.activities').change(function (e) {
 //-------------------------
 // The .each() method is designed to make DOM looping constructs concise and less error-prone.the keyword this refers to the element
 // the element is $(activities input), this is where 'this' comes in
-  $('.activities input').each(function (i, element){
-    // variables
-    let $chosen = $(e.target).val(dayNtime)[i];
-    console.log($chosen);
-    if ( $chosen ) { // something like this ($chosen === $chosen && $chosen !== $chosen)
-      if ( true ) {
-          $chosen.disabled = true;
-      } else {
-          $chosen.disabled = false;
-      }
+  // $('.activities input').each(function (i, element){
+  //   // variables
+  //   let $chosen = $(e.target).val(dayNtime)[i];
+  //   console.log($chosen);
+  //   if ( $chosen ) { // something like this ($chosen === $chosen && $chosen !== $chosen)
+  //     if ( true ) {
+  //         $chosen.disabled = true;
+  //     } else {
+  //         $chosen.disabled = false;
+  //     }
+  //   }
+  // });
+  const jsFrameworks = $("input[name ='js-frameworks']"); // 9am -12pm
+  const jsLibrary = $("input[name ='js-libs']"); // 1pm - 4pm
+  const express = $("input[name ='express']"); // // 9am -12pm
+  const node = $("input[name ='node']"); // 1pm - 4pm
+
+  //If JavaScript Frameworks Workshop is checked
+  $(jsFrameworks).change(function (event) {
+    if($(event.target).is(':checked')) {
+      express.prop('disabled', true);
+    } else {
+      express.prop('disabled', false);
+    }
+  });
+
+  $(jsLibrary).change(function (event) {
+    if($(event.target).is(':checked')) {
+      node.prop('disabled', true);
+    } else {
+      node.prop('disabled', false);
+    }
+  });
+
+  $(express).change(function (event) {
+    if($(event.target).is(':checked')) {
+      jsFrameworks.prop('disabled', true);
+    } else {
+      jsFrameworks.prop('disabled', false);
+    }
+  });
+
+  $(node).change(function (event) {
+    if($(event.target).is(':checked')) {
+      jsLibrary.prop('disabled', true);
+    } else {
+      jsLibrary.prop('disabled', false);
     }
   });
 
@@ -178,16 +215,17 @@ function isValidCVV (number) {
 }
 
 // REGISTER BUTTON VALIDATION
-// complete fields warning
-const $warning = $('<label></label>');
-$('form').append($warning);
-const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
-$incomplete.hide();
+
 const $nameLetters = $('label[for="name"]');
 const $emailLetters = $('label[for="mail"]');
 const $ccNum = $('label[for="cc-num"]');
 const $zip = $('label[for="zip"]');
 const $cvv = $('label[for="cvv"]');
+// complete fields warning
+const $warning = $('<label></label>');
+$('form').append($warning);
+const $incomplete = $warning.text('Fill in empty fields').css({"color": "red", "font-weight": "bold"});
+$incomplete.hide();
 // Register Button
 $( 'button' ).on( 'click', function(e) {
 // name input
@@ -205,14 +243,24 @@ $( 'button' ).on( 'click', function(e) {
     $incomplete.show();
   }
 // activity section
-  if ( $( '.activities input' ).prop( "checked" ) ) {
+  // $( '.activities input' ).each( function (i, element) {
+  //   let checked = $(e.target)[i];
+  //   if ( !$( checked ).prop('checked') ) {
+  //     $('.activities legend').css({"color": "red", "font-weight": "bold"});
+  //     e.preventDefault();
+  //     $incomplete.show();
+  //   }
+  // })
+  if ( !$( '.activities input' ).prop('checked') ) {
     $('.activities legend').css({"color": "red", "font-weight": "bold"});
     e.preventDefault();
     $incomplete.show();
   }
+
+
 // credit card
   if ( $('#payment').val() === 'credit card' ) {
-    if ( $('#cc-num').val() === "" ) {
+    if ( $('#cc-num').val() === '') {
       $ccNum.css({"color": "red", "font-weight": "bold"});
       $('#cc-num').css({"border-color": "red"});
       e.preventDefault();
