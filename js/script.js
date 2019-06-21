@@ -68,7 +68,6 @@ $('.activities').change(function (e) {
   let $clicked = $(e.target);
   // The text content of the above `input` element’s parent `label` element.
   let $activity = $clicked.parent().text();
-  console.log($activity);
 // UPDATING/DISPLAYING COST PART 1 ... -------------------------
   // The index of the dollar sign ‘$’
   const dollarSign = '$';
@@ -103,20 +102,15 @@ $('.activities').change(function (e) {
 // the element is $(activities input), this is where 'this' comes in
   $('.activities input').each(function (i, element){
     // variables
-    let $clickedActivity = $( e.target ).prop( "checked" );
-    let $inputClicked = $clickedActivity[i];
-    console.log($clickedActivity);
-    console.log($inputClicked);
-    if ( $clickedActivity === $inputClicked ) {
-
+    let $chosen = $(e.target).val(dayNtime)[i];
+    console.log($chosen);
+    if ( $chosen ) { // something like this ($chosen === $chosen && $chosen !== $chosen)
+      if ( true ) {
+          $chosen.disabled = true;
+      } else {
+          $chosen.disabled = false;
+      }
     }
-    // if ( something === something && something !== something ) {
-    //   if ( $clickedActivity ) {
-    //       something.disabled = false;
-    //     } else {
-    //       something.disabled = true;
-    //     }
-    // }
   });
 
 // dont pass / end of activity function --------------
