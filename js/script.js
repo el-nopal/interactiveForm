@@ -102,9 +102,10 @@ $('.activities').change(function (e) {
 // the element is $(activities input), this is where 'this' comes in
   // $('.activities input').each(function (i, element){
   //   // variables
-  //   let $chosen = $(e.target).val(dayNtime)[i];
+  //   console.log(element);
+  //   let $chosen = $(e.target);
   //   console.log($chosen);
-  //   if ( $chosen ) { // something like this ($chosen === $chosen && $chosen !== $chosen)
+  //   if ( dayNtime === dayNtime && $chosen !== dayNtime ) { // something like this ($chosen === $chosen && $chosen !== $chosen)
   //     if ( true ) {
   //         $chosen.disabled = true;
   //     } else {
@@ -117,7 +118,7 @@ $('.activities').change(function (e) {
   const express = $("input[name ='express']"); // // 9am -12pm
   const node = $("input[name ='node']"); // 1pm - 4pm
 
-  //If JavaScript Frameworks Workshop is checked
+  // If JavaScript Frameworks Workshop is checked
   $(jsFrameworks).change(function (event) {
     if($(event.target).is(':checked')) {
       express.prop('disabled', true);
@@ -243,22 +244,22 @@ $( 'button' ).on( 'click', function(e) {
     $incomplete.show();
   }
 // activity section
-  $( '.activities input' ).each( function (i, element) {
-    let checked = $(this).val()[i];
-    if ( $( checked ).prop('checked') ) {
-      return false;
-    } else {
+  // $( '.activities input' ).each( function (i, element) {
+  //   let checked = $(this).val()[i];
+  //   if ( $( checked ).prop('checked') === true ) {
+  //     return true;
+  //   } else {
+  //     $('.activities legend').css({"color": "red", "font-weight": "bold"});
+  //     e.preventDefault();
+  //     $incomplete.show();
+  //   }
+  // });
+
+if ($( '.activities input' ).not(":checked").length) {
       $('.activities legend').css({"color": "red", "font-weight": "bold"});
       e.preventDefault();
       $incomplete.show();
-    }
-  })
-  // if ( !$( '.activities input' ).prop('checked') ) {
-  //   $('.activities legend').css({"color": "red", "font-weight": "bold"});
-  //   e.preventDefault();
-  //   $incomplete.show();
-  // }
-
+}
 
 // credit card
   if ( $('#payment').val() === 'credit card' ) {
