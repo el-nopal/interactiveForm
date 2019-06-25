@@ -244,22 +244,33 @@ $( 'button' ).on( 'click', function(e) {
     $incomplete.show();
   }
 // activity section
-  // $( '.activities input' ).each( function (i, element) {
-  //   let checked = $(this).val()[i];
-  //   if ( $( checked ).prop('checked') === true ) {
-  //     return true;
-  //   } else {
-  //     $('.activities legend').css({"color": "red", "font-weight": "bold"});
-  //     e.preventDefault();
-  //     $incomplete.show();
-  //   }
-  // });
 
-if ($( '.activities input' ).not(":checked").length) {
+  $( ".activities input" ).each(function( i ) {
+    if ( $(this).prop('checked') ) {
       $('.activities legend').css({"color": "red", "font-weight": "bold"});
       e.preventDefault();
       $incomplete.show();
-}
+    } else {
+      this.style.css = "";
+    }
+  });
+
+  // $('.activities legend').css({"color": "red", "font-weight": "bold"});
+  // e.preventDefault();
+  // $incomplete.show();
+
+//   function validate_form()
+// {
+// valid = true;
+//
+// if($('input[type=checkbox]:checked').length == 0)
+// {
+//     alert ( "ERROR! Please select at least one checkbox" );
+//     valid = false;
+// }
+//
+// return valid;
+// }
 
 // credit card
   if ( $('#payment').val() === 'credit card' ) {
